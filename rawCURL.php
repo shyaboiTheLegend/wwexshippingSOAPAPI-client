@@ -11,6 +11,7 @@ function thing($sendCity, $sendState, $sendZip, $sendCounty, $recCity, $recState
     $senderZip = $sendZip; 
     $senderCountry = $sendCounty;
 
+
     $receiverCity = $recCity;
     $receiverState = $recState;
     $receiverZip = $recZip;
@@ -125,7 +126,7 @@ function thing($sendCity, $sendState, $sendZip, $sendCounty, $recCity, $recState
     }
     
     try {
-        echo "<pre>"; print_r($res); echo "</pre>";
+        return $res;
         
     } catch (Exception $e) {
         echo $e->getMessage();
