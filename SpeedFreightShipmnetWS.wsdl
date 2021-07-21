@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.wwexship.com" xmlns:impl="http://www.wwexship.com" xmlns:intf="http://www.wwexship.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.wwexship.com" elementFormDefault="qualified">
+   <complexType name="AuthenticationToken">
+    <sequence>
+     <element name="loginId" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="licenseKey" nillable="true" type="xsd:string"/>
+     <element name="accountNumber" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="AuthenticationToken" type="impl:AuthenticationToken" maxOccurs="1"/> 
+   <element name="quoteSpeedFreightShipment">
+    <complexType>
+     <sequence>
+      <element name="freightShipmentQuoteRequest" type="impl:FreightShipmentQuoteRequest"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSLineItemHazmatInfo">
+    <sequence>
+     <element name="lineItemHazmatUNNumberHeader" nillable="true" type="xsd:string"/>
+     <element name="lineItemHazmatUNNumber" nillable="true" type="xsd:string"/>
+     <element name="lineItemHazmatClass" nillable="true" type="xsd:string"/>
+     <element name="lineItemHazmatEmContactPhone" nillable="true" type="xsd:string"/>
+     <element name="lineItemHazmatPackagingGroup" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSLineItem">
+    <sequence>
+     <element name="lineItemClass" nillable="true" type="xsd:string"/>
+     <element name="lineItemWeight" nillable="true" type="xsd:string"/>
+     <element name="lineItemDescription" nillable="true" type="xsd:string"/>
+     <element name="lineItemNMFC" nillable="true" type="xsd:string"/>
+     <element name="lineItemPieceType" nillable="true" type="xsd:string"/>
+     <element name="piecesOfLineItem" nillable="true" type="xsd:string"/>
+     <element name="isHazmatLineItem" nillable="true" type="xsd:string"/>
+     <element name="lineItemHazmatInfo" nillable="true" type="impl:WSLineItemHazmatInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfWSLineItem">
+    <sequence>
+     <element name="wsLineItem" type="impl:WSLineItem" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSHandlingUnit">
+    <sequence>
+     <element name="typeOfHandlingUnit" nillable="true" type="xsd:string"/>
+     <element name="numberOfHandlingUnit" nillable="true" type="xsd:string"/>
+     <element name="handlingUnitHeight" nillable="true" type="xsd:string"/>
+     <element name="handlingUnitLength" nillable="true" type="xsd:string"/>
+     <element name="handlingUnitWidth" nillable="true" type="xsd:string"/>
+     <element name="lineItemDetails" nillable="true" type="impl:ArrayOfWSLineItem"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfWSHandlingUnit">
+    <sequence>
+     <element name="wsHandlingUnit" type="impl:WSHandlingUnit" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentCommodityDetails">
+    <sequence>
+     <element name="is11FeetShipment" nillable="true" type="xsd:string"/>
+     <element name="handlingUnitDetails" nillable="true" type="impl:ArrayOfWSHandlingUnit"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentInsuranceDetail">
+    <sequence>
+     <element name="insuranceCategory" nillable="true" type="xsd:string"/>
+     <element name="insuredCommodityValue" nillable="true" type="xsd:string"/>
+     <element name="insuranceIncludingFreightCharge" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentQuoteRequest">
+    <sequence>
+     <element name="senderCity" nillable="true" type="xsd:string"/>
+     <element name="senderState" nillable="true" type="xsd:string"/>
+     <element name="senderZip" nillable="true" type="xsd:string"/>
+     <element name="senderCountryCode" nillable="true" type="xsd:string"/>
+     <element name="insidePickup" nillable="true" type="xsd:string"/>
+     <element name="liftgatePickup" nillable="true" type="xsd:string"/>
+     <element name="residentialPickup" nillable="true" type="xsd:string"/>
+     <element name="tradeshowPickup" nillable="true" type="xsd:string"/>
+     <element name="constructionSitePickup" nillable="true" type="xsd:string"/>
+     <element name="limitedAccessPickup" nillable="true" type="xsd:string"/>
+     <element name="limitedAccessPickupType" nillable="true" type="xsd:string"/>
+
+     <element name="receiverCity" nillable="true" type="xsd:string"/>
+     <element name="receiverState" nillable="true" type="xsd:string"/>
+     <element name="receiverZip" nillable="true" type="xsd:string"/>
+     <element name="receiverCountryCode" nillable="true" type="xsd:string"/>
+     <element name="insideDelivery" nillable="true" type="xsd:string"/>
+     <element name="liftgateDelivery" nillable="true" type="xsd:string"/>
+     <element name="residentialDelivery" nillable="true" type="xsd:string"/>
+     <element name="tradeshowDelivery" nillable="true" type="xsd:string"/>
+     <element name="constructionSiteDelivery" nillable="true" type="xsd:string"/>
+     <element name="limitedAccessDelivery" nillable="true" type="xsd:string"/>
+     <element name="limitedAccessDeliveryType" nillable="true" type="xsd:string"/>
+     <element name="notifyBeforeDelivery" nillable="true" type="xsd:string"/>
+     <element name="collectOnDelivery" nillable="true" type="xsd:string"/>
+     <element name="collectOnDeliveryAmount" nillable="true" type="xsd:string"/>
+     <element name="CODIncludingFreightCharge" nillable="true" type="xsd:string"/>
+
+     <element name="shipmentDate" nillable="true" type="xsd:string"/>
+     
+     <element name="insuranceDetail" nillable="true" type="impl:FreightShipmentInsuranceDetail"/>
+     <element name="commdityDetails" nillable="true" type="impl:FreightShipmentCommodityDetails"/>
+    </sequence>
+   </complexType>
+   <element name="quoteSpeedFreightShipmentResponse">
+    <complexType>
+     <sequence>
+      <element name="quoteSpeedFreightShipmentReturn" type="impl:FreightShipmentQuoteResponse"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="FreightShipmentErrorDescription">
+    <sequence>
+     <element name="errorDescription" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFreightShipmentErrorDescription">
+    <sequence>
+     <element name="freightShipmentErrorDescription" type="impl:FreightShipmentErrorDescription" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentCarrierNotification">
+    <sequence>
+     <element name="carrierNotification" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFreightShipmentCarrierNotification">
+    <sequence>
+     <element name="freightShipmentCarrierNotification" type="impl:FreightShipmentCarrierNotification" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentQuoteResult">
+    <sequence>
+     <element name="shipmentQuoteId" nillable="true" type="xsd:string"/>
+     <element name="carrierSCAC" nillable="true" type="xsd:string"/>
+     <element name="carrierName" nillable="true" type="xsd:string"/>
+     <element name="totalPrice" nillable="true" type="xsd:string"/>
+     <element name="transitDays" nillable="true" type="xsd:string"/>
+     <element name="guaranteedService" nillable="true" type="xsd:string"/>
+     <element name="highCostDeliveryShipment" nillable="true" type="xsd:string"/>
+     <element name="interline" nillable="true" type="xsd:string"/>
+     <element name="nmfcRequired" nillable="true" type="xsd:string"/>
+     <element name="carrierNotifications" nillable="true" type="impl:ArrayOfFreightShipmentCarrierNotification"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFreightShipmentQuoteResult">
+    <sequence>
+     <element name="freightShipmentQuoteResult" type="impl:FreightShipmentQuoteResult" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentNotification">
+    <sequence>
+     <element name="notification" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFreightShipmentNotification">
+    <sequence>
+     <element name="freightShipmentNotification" type="impl:FreightShipmentNotification" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentQuoteResponse">
+    <sequence>
+     <element name="responseStatusCode" nillable="true" type="xsd:string"/>
+     <element name="responseStatusDescription" nillable="true" type="xsd:string"/>
+     <element name="errorDescriptions" nillable="true" type="impl:ArrayOfFreightShipmentErrorDescription"/>
+     <element name="shipmentNotifications" nillable="true" type="impl:ArrayOfFreightShipmentNotification"/>
+     <element name="freightShipmentQuoteResults" nillable="true" type="impl:ArrayOfFreightShipmentQuoteResult"/>
+    </sequence>
+   </complexType>
+   <element name="bookSpeedFreightShipment">
+    <complexType>
+     <sequence>
+      <element name="freightShipmentBookRequest" type="impl:FreightShipmentBookRequest"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="FreightShipmentAddressLabel">
+    <sequence>
+     <element name="printShipmentAddessLabel" nillable="true" type="xsd:string"/>
+     <element name="numberOfShipmentAddressLabel" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentCODRemitInfo">
+    <sequence>
+     <element name="companyName" nillable="true" type="xsd:string"/>
+     <element name="streetAddress" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="zip" nillable="true" type="xsd:string"/>
+     <element name="country" nillable="true" type="xsd:string"/>
+     <element name="formOfPayment" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentInsuranceDescription">
+    <sequence>
+     <element name="insuranceDescriptionOfCargo" nillable="true" type="xsd:string"/>
+     <element name="insuranceMarksNumbers" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentSenderDetail">
+    <sequence>
+     <element name="senderCompanyName" nillable="true" type="xsd:string"/>
+     <element name="senderAddressLine1" nillable="true" type="xsd:string"/>
+     <element name="senderAddressLine2" nillable="true" type="xsd:string"/>
+     <element name="senderCity" nillable="true" type="xsd:string"/>
+     <element name="senderState" nillable="true" type="xsd:string"/>
+     <element name="senderZip" nillable="true" type="xsd:string"/>
+     <element name="senderCountryCode" nillable="true" type="xsd:string"/>
+     <element name="senderPhone" nillable="true" type="xsd:string"/>
+     <element name="senderContact" nillable="true" type="xsd:string"/>
+     <element name="emailBOLToSender" nillable="true" type="xsd:string"/>
+     <element name="senderEmailAddess" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentReceiverDetail">
+    <sequence>
+     <element name="receiverCompanyName" nillable="true" type="xsd:string"/>
+     <element name="receiverAddressLine1" nillable="true" type="xsd:string"/>
+     <element name="receiverAddressLine2" nillable="true" type="xsd:string"/>
+     <element name="receiverCity" nillable="true" type="xsd:string"/>
+     <element name="receiverState" nillable="true" type="xsd:string"/>
+     <element name="receiverZip" nillable="true" type="xsd:string"/>
+     <element name="receiverCountryCode" nillable="true" type="xsd:string"/>
+     <element name="receiverPhone" nillable="true" type="xsd:string"/>
+     <element name="receiverContact" nillable="true" type="xsd:string"/>
+     <element name="emailBOLToReceiver" nillable="true" type="xsd:string"/>
+     <element name="receiverEmailAddess" nillable="true" type="xsd:string"/>
+     <element name="billToReceiver" nillable="true" type="xsd:string"/>
+     <element name="receiverAccountNumber" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentReference">
+    <sequence>
+     <element name="referenceDescription" nillable="true" type="xsd:string"/>
+     <element name="referenceType" nillable="true" type="xsd:string"/>
+     <element name="referencePackageNumber" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFreightShipmentReference">
+    <sequence>
+     <element name="freightShipmentReference" type="impl:FreightShipmentReference" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentBookRequest">
+    <sequence>
+     <element name="shipmentQuoteId" nillable="true" type="xsd:string"/>
+     <element name="freightShipmentSenderDetail" nillable="true" type="impl:FreightShipmentSenderDetail"/>
+     <element name="freightShipmentReceiverDetail" nillable="true" type="impl:FreightShipmentReceiverDetail"/>
+     <element name="shipmentDate" nillable="true" type="xsd:string"/>
+     <element name="shipmentReadyTime" nillable="true" type="xsd:string"/>
+     <element name="shipmentClosingTime" nillable="true" type="xsd:string"/>
+     <element name="freightShipmentCODInfo" nillable="true" type="impl:FreightShipmentCODRemitInfo"/>
+     <element name="freightShipmentInsuranceDescription" nillable="true" type="impl:FreightShipmentInsuranceDescription"/>
+     <element name="shipmentReferences" nillable="true" type="impl:ArrayOfFreightShipmentReference"/>
+     <element name="specialInstruction" nillable="true" type="xsd:string"/>
+     <element name="freightShipmentAddressLabel" nillable="true" type="impl:FreightShipmentAddressLabel"/>
+    </sequence>
+   </complexType>
+   <element name="bookSpeedFreightShipmentResponse">
+    <complexType>
+     <sequence>
+      <element name="bookSpeedFreightShipmentReturn" type="impl:FreightShipmentBookResponse"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="FreightShipmentBOLLabel">
+    <sequence>
+     <element name="base64BOLLabel" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFreightShipmentBOLLabel">
+    <sequence>
+     <element name="freightShipmentBOLLabel" type="impl:FreightShipmentBOLLabel" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentInsurenceCertificate">
+    <sequence>
+     <element name="base64InsuranceCertificate" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFreightShipmentInsurenceCertificate">
+    <sequence>
+     <element name="freightShipmentInsurenceCertificate" type="impl:FreightShipmentInsurenceCertificate" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentBookResponse">
+    <sequence>
+     <element name="responseStatusCode" nillable="true" type="xsd:string"/>
+     <element name="responseStatusDescription" nillable="true" type="xsd:string"/>
+     <element name="errorDescriptions" nillable="true" type="impl:ArrayOfFreightShipmentErrorDescription"/>
+     <element name="notifications" nillable="true" type="impl:ArrayOfFreightShipmentNotification"/>
+     <element name="freightShipmentBOLNumber" nillable="true" type="xsd:string"/>
+     <element name="freightShipmentBOLLabels" nillable="true" type="impl:ArrayOfFreightShipmentBOLLabel"/>
+     <element name="freightShipmentInsuranceCertificateId" nillable="true" type="xsd:string"/>
+     <element name="freightShipmentInsuranceCertificates" nillable="true" type="impl:ArrayOfFreightShipmentInsurenceCertificate"/>
+    </sequence>
+   </complexType>
+   <element name="voidSpeedFreightShipment">
+    <complexType>
+     <sequence>
+      <element name="freightShipmentVoidRequest" type="impl:FreightShipmentVoidRequest"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfFreightShipmentBOLNumber">
+    <sequence>
+     <element name="freightShipmentBOLNumber" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentVoidRequest">
+    <sequence>
+     <element name="shipmentBOLNumbers" nillable="true" type="impl:ArrayOfFreightShipmentBOLNumber"/>
+    </sequence>
+   </complexType>
+   <element name="voidSpeedFreightShipmentResponse">
+    <complexType>
+     <sequence>
+      <element name="voidSpeedFreightShipmentReturn" type="impl:FreightShipmentVoidResponse"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="FreightShipmentVoidResult">
+    <sequence>
+     <element name="bolNumber" nillable="true" type="xsd:string"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFreightShipmentVoidResult">
+    <sequence>
+     <element name="freightShipmentVoidResult" type="impl:FreightShipmentVoidResult" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentVoidResponse">
+    <sequence>
+     <element name="responseStatusCode" nillable="true" type="xsd:string"/>
+     <element name="responseStatusDescription" nillable="true" type="xsd:string"/>
+     <element name="errorDescriptions" nillable="true" type="impl:ArrayOfFreightShipmentErrorDescription"/>
+     <element name="freightShipmentVoidResults" nillable="true" type="impl:ArrayOfFreightShipmentVoidResult"/>
+    </sequence>
+   </complexType>
+   <element name="getSpeedFreightShipmentProNumber">
+    <complexType>
+     <sequence>
+      <element name="freightShipmentProNumberRequest" type="impl:FreightShipmentProNumberRequest"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="FreightShipmentProNumberRequest">
+    <sequence>
+     <element name="shipmentBOLNumbers" nillable="true" type="impl:ArrayOfFreightShipmentBOLNumber"/>
+    </sequence>
+   </complexType>
+   <element name="getSpeedFreightShipmentProNumberResponse">
+    <complexType>
+     <sequence>
+      <element name="getSpeedFreightShipmentProNumberReturn" type="impl:FreightShipmentProNumberResponse"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="FreightShipmentProNumberResult">
+    <sequence>
+     <element name="bolNumber" nillable="true" type="xsd:string"/>
+     <element name="proNumber" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFreightShipmentProNumberResult">
+    <sequence>
+     <element name="freightShipmentProNumberResult" type="impl:FreightShipmentProNumberResult" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   <complexType name="FreightShipmentProNumberResponse">
+    <sequence>
+     <element name="responseStatusCode" nillable="true" type="xsd:string"/>
+     <element name="responseStatusDescription" nillable="true" type="xsd:string"/>
+     <element name="errorDescriptions" nillable="true" type="impl:ArrayOfFreightShipmentErrorDescription"/>
+     <element name="freightShipmentProNumberResults" nillable="true" type="impl:ArrayOfFreightShipmentProNumberResult"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+ <wsdl:message name="SpeedFreightShipmentRequestHeaders">
+  <wsdl:part name="authenticationToken" element="impl:AuthenticationToken"/>
+ </wsdl:message>
+
+
+   <wsdl:message name="bookSpeedFreightShipmentRequest">
+
+      <wsdl:part name="parameters" element="impl:bookSpeedFreightShipment"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="bookSpeedFreightShipmentResponse">
+
+      <wsdl:part name="parameters" element="impl:bookSpeedFreightShipmentResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSpeedFreightShipmentProNumberRequest">
+
+      <wsdl:part name="parameters" element="impl:getSpeedFreightShipmentProNumber"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSpeedFreightShipmentProNumberResponse">
+
+      <wsdl:part name="parameters" element="impl:getSpeedFreightShipmentProNumberResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="voidSpeedFreightShipmentRequest">
+
+      <wsdl:part name="parameters" element="impl:voidSpeedFreightShipment"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="voidSpeedFreightShipmentResponse">
+
+      <wsdl:part name="parameters" element="impl:voidSpeedFreightShipmentResponse"/>
+
+   </wsdl:message>
+
+
+   <wsdl:message name="quoteSpeedFreightShipmentRequest">
+
+      <wsdl:part name="parameters" element="impl:quoteSpeedFreightShipment"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="quoteSpeedFreightShipmentResponse">
+
+      <wsdl:part name="parameters" element="impl:quoteSpeedFreightShipmentResponse"/>
+
+   </wsdl:message>
+
+
+   <wsdl:portType name="SpeedFreightShipment">
+
+      <wsdl:operation name="quoteSpeedFreightShipment">
+
+         <wsdl:input name="quoteSpeedFreightShipmentRequest" message="impl:quoteSpeedFreightShipmentRequest"/>
+
+         <wsdl:output name="quoteSpeedFreightShipmentResponse" message="impl:quoteSpeedFreightShipmentResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="bookSpeedFreightShipment">
+
+         <wsdl:input name="bookSpeedFreightShipmentRequest" message="impl:bookSpeedFreightShipmentRequest"/>
+
+         <wsdl:output name="bookSpeedFreightShipmentResponse" message="impl:bookSpeedFreightShipmentResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="voidSpeedFreightShipment">
+
+         <wsdl:input name="voidSpeedFreightShipmentRequest" message="impl:voidSpeedFreightShipmentRequest"/>
+
+         <wsdl:output name="voidSpeedFreightShipmentResponse" message="impl:voidSpeedFreightShipmentResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSpeedFreightShipmentProNumber">
+
+         <wsdl:input name="getSpeedFreightShipmentProNumberRequest" message="impl:getSpeedFreightShipmentProNumberRequest"/>
+
+         <wsdl:output name="getSpeedFreightShipmentProNumberResponse" message="impl:getSpeedFreightShipmentProNumberResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SpeedFreightShipmentSoapBinding" type="impl:SpeedFreightShipment">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="quoteSpeedFreightShipment">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="quoteSpeedFreightShipmentRequest">
+
+            <wsdlsoap:body use="literal"/>
+	       <wsdlsoap:header message="impl:SpeedFreightShipmentRequestHeaders" part="authenticationToken" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="quoteSpeedFreightShipmentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="bookSpeedFreightShipment">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="bookSpeedFreightShipmentRequest">
+
+            <wsdlsoap:body use="literal"/>
+               <wsdlsoap:header message="impl:SpeedFreightShipmentRequestHeaders" part="authenticationToken" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="bookSpeedFreightShipmentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="voidSpeedFreightShipment">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="voidSpeedFreightShipmentRequest">
+
+            <wsdlsoap:body use="literal"/>
+            <wsdlsoap:header message="impl:SpeedFreightShipmentRequestHeaders" part="authenticationToken" use="literal"/>
+
+
+         </wsdl:input>
+
+         <wsdl:output name="voidSpeedFreightShipmentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSpeedFreightShipmentProNumber">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSpeedFreightShipmentProNumberRequest">
+
+            <wsdlsoap:body use="literal"/>
+            <wsdlsoap:header message="impl:SpeedFreightShipmentRequestHeaders" part="authenticationToken" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSpeedFreightShipmentProNumberResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SpeedFreightShipmentService">
+
+      <wsdl:port name="SpeedFreightShipment" binding="impl:SpeedFreightShipmentSoapBinding">
+
+         <wsdlsoap:address location="http://www.wwexship.com/webServices/services/SpeedFreightShipment"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
